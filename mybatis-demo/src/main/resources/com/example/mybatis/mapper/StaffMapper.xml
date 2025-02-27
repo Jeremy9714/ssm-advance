@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mybatis.mapper.StaffMapper">
+
+    <resultMap id="staffAndEmpMap" type="Staff">
+        <id property="id" column="id"></id>
+        <result property="staffName" column="s_name"></result>
+        <result property="employee.eid" column="e_id"></result>
+        <result property="employee.empName" column="e_name"></result>
+    </resultMap>
+
+    <resultMap id="staffAndEmpMapTwo" type="Staff">
+        <id property="id" column="id"></id>
+        <result property="staffName" column="s_name"></result>
+        <association property="employee" javaType="Employee">
+            <id property="eid" column="e_id"></id>
+            <result property="empName" column="e_name"></result>
+        </association>
+    </resultMap>
+    
+    <resultMap id="staffAndEmpMapThree" type="Staff">
+        <id property="id" column="id"></id>
+        <result property="staffName" column="s_name"></result>
+        <!-- fetchType 开启全局延迟加载时，可以单独设置延迟或立即加载-->
+        <association property="employee" select="com.example.mybatis.mapper.EmployeeMapper.getEmp"
+                     column="e_id" fetchType="eager">
+        </association>
+    </resultMap>
+    
+    <resultMap id="staffMap" type="Staff">
+        <id property="id" column="id"></id>
+        <result property="staffName" column="s_name"></result>
+    </resultMap>
+
+    <!-- 多对一查询 -->
+    
+    <select id="getList" resultMap="staffAndEmpMapTwo">
+        select *
+        from t_staff s
+                 left join t_employee e on s.e_id = e.e_id
+    </select>
+    
+    <select id="getListForStep" resultMap="staffAndEmpMapThree">
+        select * from t_staff
+    </select>
+    
+    <select id="getStaff" resultMap="staffMap">
+        select * from t_staff 
+        <where>
+            e_id = #{eid}
+        </where>
+    </select>
+</mapper>

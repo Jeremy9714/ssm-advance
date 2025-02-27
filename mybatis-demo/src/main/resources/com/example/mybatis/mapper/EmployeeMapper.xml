@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mybatis.mapper.EmployeeMapper">
+    <resultMap id="empMap" type="Employee">
+        <id property="eid" column="e_id"></id>
+        <result property="empName" column="e_name"></result>
+        <!--        <result property="age" column="age"></result>-->
+        <!--        <result property="gender" column="gender"></result>-->
+    </resultMap>
+
+    <resultMap id="empAndStaffMap" type="Employee">
+        <id property="eid" column="e_id"></id>
+        <result property="age" column="age"></result>
+        <result property="gender" column="gender"></result>
+        <result property="empName" column="e_name"></result>
+        <collection property="staffs" ofType="Staff">
+            <id property="id" column="id"></id>
+            <result property="staffName" column="s_name"></result>
+        </collection>
+    </resultMap>
+
+    <resultMap id="empAndStaffMapStep" type="Employee">
+        <id property="eid" column="e_id"></id>
+        <result property="empName" column="e_name"></result>
+        <result property="age" column="age"></result>
+        <result property="gender" column="gender"></result>
+        <collection property="staffs" select="com.example.mybatis.mapper.StaffMapper.getStaff"
+                    column="e_id">
+        </collection>
+    </resultMap>
+
+    <select id="getList" resultMap="empMap">
+        select *
+        from t_employee
+    </select>
+
+    <select id="getEmp" resultMap="empMap">
+        select * from t_employee
+        <where>
+            e_id = #{eid}
+        </where>
+    </select>
+
+    <!-- 一对多 -->
+
+    <select id="getEmployeeAndStaff" resultMap="empAndStaffMap">
+        select *
+        from t_employee e
+        left join t_staff s on e.e_id = s.e_id
+        <where>
+            e.e_id = #{eid}
+        </where>
+    </select>
+
+    <select id="getEmployeeAndStaffStep" resultMap="empAndStaffMapStep">
+        select *
+        from t_employee
+        <where>
+            e_id = #{eid}
+        </where>
+    </select>
+    
+</mapper>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mybatis.mapper.UserMapper">
+    
+    <!-- 开启二级缓存 -->
+<!--    <cache type="org.mybatis.caches.ehcache.EhcacheCache" -->
+    <cache 
+           eviction="LRU"
+           size="10"
+           readOnly="false"
+    />
+    
+    <insert id="insertUser" parameterType="User">
+        insert into t_user
+        values (#{id}, #{name}, #{age}, #{gender})
+    </insert>
+
+    <select id="queryUser" resultType="User">
+        select * from t_user
+        <where>
+            id = #{id}
+        </where>
+    </select>
+
+    <select id="queryList" resultType="User">
+        select * from t_user
+        <where>
+            name = #{username} and age = #{userage}
+        </where>
+    </select>
+
+    <select id="getAllUserToMap" resultType="map">
+        select *
+        from t_user
+    </select>
+
+    <select id="queryList2" resultType="User">
+        select * from t_user
+        <where>
+            name like concat('%', #{name},'%')
+        </where>
+    </select>
+
+    <select id="queryList3" resultType="User">
+        select * from t_user
+        <where>
+            id in
+            <foreach item="id" collection="ids" separator="," open="(" close=")" index="">
+                #{id}
+            </foreach>
+        </where>
+    </select>
+
+    <sql id="userSql">
+        id
+        , name, age, gender
+    </sql>
+
+    <select id="getUserByCondition" resultType="User">
+        select
+        <include refid="userSql">
+        </include>
+        from t_user
+        <trim prefix="where" suffix="" prefixOverrides="and | or" suffixOverrides="and | or">
+            and id = #{id} or
+        </trim>
+    </select>
+    
+    <select id="queryAll" resultType="User">
+        select *from t_user
+    </select>
+</mapper>

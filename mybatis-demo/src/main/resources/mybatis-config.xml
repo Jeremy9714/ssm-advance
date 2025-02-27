@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+    <!-- 配置项 -->
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!-- 开启延迟加载 -->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <!-- 开启延迟加载时的代理对象功能 默认false(>3.4.1) 会加载懒对象的所有属性-->
+        <setting name="aggressiveLazyLoading" value="false"/>
+        <!-- 开启二级缓存 -->
+        <setting name="cacheEnabled" value="true"/>
+    </settings>
+
+    <!-- 别名 -->
+    <typeAliases>
+        <package name="com.example.mybatis.bean"/>
+    </typeAliases>
+
+    <plugins>
+        <!--设置分页插件-->
+        <plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>
+    </plugins>
+
+    <!-- 配置连接数据库的环境 -->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url"
+                          value="jdbc:mysql:///ssm_202502?useSSL=false&amp;useUnicode=true&amp;allowMultiQueries=true&amp;characterEncoding=UTF8&amp;serverTimezone=Asia/Shanghai"/>
+                <property name="username" value="root"/>
+                <property name="password" value="97714"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!-- 引入映射文件 -->
+    <mappers>
+        <!--        <mapper resource="mappers/UserMapper.xml"/>-->
+        <package name="com.example.mybatis.mapper"/>
+    </mappers>
+</configuration>
