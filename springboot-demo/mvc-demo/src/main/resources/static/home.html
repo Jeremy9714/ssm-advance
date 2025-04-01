@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        <h1>Hello World</h1>
+        <div>
+            <form action="/user" method="get">
+                <input type="submit" value="GET提交"/>
+            </form>
+            <form action="/user" method="post">
+                <input type="submit" value="POST提交"/>
+            </form>
+            <form action="/user" method="post">
+                <!--            <input name="_method" type="hidden" value="PUT"/>-->
+                <input name="_m" type="hidden" value="PUT"/>
+                <input type="submit" value="PUT提交"/>
+            </form>
+            <form action="/user" method="post">
+                <!--            <input name="_method" type="hidden" value="DELETE"/>-->
+                <input name="_m" type="hidden" value="DELETE"/>
+                <input type="submit" value="DELETE提交"/>
+            </form>
+            
+            <form action="/save/user" method="post">
+                <input name="name" placeholder="username..."/>
+                <input name="age" placeholder="age..."/>
+                <input name="gender" placeholder="gender..."/>
+                <input type="submit" value="提交"/>
+            </form>
+        </div>
+        <hr>
+        <div>
+            基本注解:
+            <ul>
+                <li>@PathVariable 路径变量</li>
+                <li>@RequestParam 请求参数</li>
+                <li>@RequestHeader 请求头</li>
+                <li>@CookieValue cookie值</li>
+                <li>@RequestBody 请求体(post)</li>
+                <li>@RequestAttribute 请求域</li>
+                <li>@MatrixVariable 矩阵变量</li>
+                <li><a href="/user/1/gender/male">测试</a></li>
+            </ul>
+        </div>
+        <div>
+            <form action="/post/user/form" method="post">
+                <label for="name"> 姓名：<input id="name" type="text" name="name" value="Jeremy"/></label>
+                年龄：<input type="text" name="age" value="28"/>
+                性别：<input type="text" name="gender" value="male"/>
+                <input type="submit" value="提交"/>
+            </form>
+            <hr>
+            <form action="/post/user/json" method="post">
+                姓名：<input type="text" name="name" value="Jeremy"/>
+                年龄：<input type="text" name="age" value="28"/>
+                性别：<input type="text" name="gender" value="male"/>
+                <input type="submit" value="提交"/>
+            </form>
+        </div>
+        <button onclick="window.location.href='/goto'">测试@RequestBody</button>
+        <hr>
+        <button onclick="window.location.href='/users?notice;name=Jeremy/nums;num=28,29'">测试@MatrixVariable</button>
+        <br>
+        <button onclick="window.location.href='/param/from'">测试参数</button>
+        <!--        <form action="/post/user" method="post">-->
+        <!--            <label for="name"> 姓名：<input id="name" type="text" name="name" value="Jeremy"/></label>-->
+        <!--            年龄：<input type="text" name="age" value="28"/>-->
+        <!--            性别：<input type="text" name="gender" value="male"/>-->
+        <!--            宠物：<input type="text" name="pet" value="Tom,4"/>-->
+        <!--            <input type="submit" value="提交"/>-->
+        <!--        </form>-->
+    </body>
+</html>

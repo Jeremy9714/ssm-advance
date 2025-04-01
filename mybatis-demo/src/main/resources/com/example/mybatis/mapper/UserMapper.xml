@@ -55,8 +55,7 @@
     </select>
 
     <sql id="userSql">
-        id
-        , name, age, gender
+        id, name, age, gender
     </sql>
 
     <select id="getUserByCondition" resultType="User">
