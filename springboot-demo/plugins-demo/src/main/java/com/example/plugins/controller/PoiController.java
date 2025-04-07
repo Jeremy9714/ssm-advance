@@ -5,10 +5,7 @@ import com.example.plugins.handler.impl.DocHandler;
 import com.example.plugins.service.ITestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,21 +22,25 @@ public class PoiController {
 
     @Autowired
     private ITestService testService;
+    
+    @Autowired
+    private DocHandler docHandler;
 
     @RequestMapping("/index")
     public String index() {
-        return "/index";
+        return "/html/index.html";
     }
 
     @RequestMapping("/exportExcel")
     public void exportExcel(HttpServletRequest request, HttpServletResponse response) {
         String type = request.getParameter("type");
         if ("employee".equals(type)) {
-            new DocHandler().exportDataExcel(response);
+//            new DocHandler().exportDataExcel(response);
+            docHandler.exportDataExcel(response);
         }
     }
 
-    @RequestMapping("/importExcel")
+    @PostMapping("/importExcel")
     @ResponseBody
     public String importExcel(@RequestParam(value = "file") MultipartFile file, @RequestParam(value = "type") String type) {
         long start = 0;
@@ -49,7 +50,8 @@ public class PoiController {
         if ("employee".equals(type)) {
             try {
                 start = System.currentTimeMillis();
-                new DocHandler().importDataExcel(file);
+//                new DocHandler().importDataExcel(file);
+                docHandler.importDataExcel(file);
                 end = System.currentTimeMillis();
             } catch (RuntimeException e) {
                 System.out.println("====== 导入失败，" + e.getMessage() + " ======");

@@ -18,11 +18,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class ExcelUtils {
 
     public static boolean isExcel2003(String filePath) {
-        return filePath.matches("^.+\\.(?i)(xls)$");
+        return filePath.matches("^.+\\.(xls)$");
     }
 
     public static boolean isExcel2007(String filePath) {
-        return filePath.matches("^.+\\.(?i)(xlxs)$");
+        return filePath.matches("^.+\\.(xlsx)$");
     }
 
     /**

@@ -36,7 +36,7 @@ public abstract class DataInfoBaseHandler {
 
         // 表头
         List<String> headerList = new ArrayList<>();
-        headerList.add("名称");
+        headerList.add("姓名");
         headerList.add("性别");
         headerList.add("年龄");
         headerList.add("住址");

@@ -6,6 +6,7 @@ import com.example.plugins.service.DocService;
 import com.example.plugins.util.EnumConverter;
 import com.example.plugins.util.ExcelUtils;
 import com.example.plugins.util.GlobalUtils;
+import com.example.plugins.util.SpringContextUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -84,7 +85,7 @@ public class DocHandler extends DataInfoBaseHandler {
         Row row = sheet.getRow(0);
         int cellSize = row.getLastCellNum();
         Iterator<Cell> iterator = row.cellIterator();
-        final String[] headCells = {"姓名", "性别", "年龄", "地址", "职业"};
+        final String[] headCells = {"姓名", "性别", "年龄", "住址", "职业"};
         if (cellSize == headCells.length) {
             for (int i = 0; iterator.hasNext(); ++i) {
                 if (!headCells[i].equals(iterator.next().getStringCellValue())) {
@@ -134,6 +135,7 @@ public class DocHandler extends DataInfoBaseHandler {
             docBeans.add(doc);
         }
 
+//        DocService docService = SpringContextUtils.getBean(DocService.class);
         docService.saveBatch(docBeans);
     }
 

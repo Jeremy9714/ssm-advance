@@ -1,5 +1,6 @@
 package com.example.plugins;
 
+import com.example.plugins.service.DocService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -16,6 +17,11 @@ public class MainApplication {
         ConfigurableApplicationContext run = SpringApplication.run(MainApplication.class, args);
 //        for (String beanDefinitionName : run.getBeanDefinitionNames()) {
 //            System.out.println(beanDefinitionName);
+//        }
+
+//        String[] beanNamesForType = run.getBeanNamesForType(DocService.class);
+//        for (String s : beanNamesForType) {
+//            System.out.println(s);
 //        }
     }
 }
