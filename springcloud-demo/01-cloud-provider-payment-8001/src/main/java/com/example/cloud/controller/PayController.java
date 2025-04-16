@@ -72,4 +72,9 @@ public class PayController {
 
         return this.discoveryClient;
     }
+    
+    @GetMapping("/lb")
+    public Integer getLB(){
+        return serverProperties.getPort();
+    }
 }

@@ -48,4 +48,9 @@ public class PayController {
             return new CommonResult<>(500, "查询失败，id为：" + id);
         }
     }
+
+    @GetMapping("/lb")
+    public Integer getLB(){
+        return serverProperties.getPort();
+    }
 }
