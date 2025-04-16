@@ -1,0 +1,9 @@
+server:
+  port: 9004
+
+spring:
+  application:
+    name: cloud-order-service
+  cloud:
+    zookeeper:
+      connect-string: k8s-master:2181
