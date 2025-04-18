@@ -1,0 +1,26 @@
+server:
+  port: 9194
+
+spring:
+  application:
+    name: cloud-stream-consumer
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: k8s-master
+      bindings:
+        input:
+          destination: stream-kafka
+          content-type: application/json
+#          group: consumer-group-1
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7003:7003/eureka
+  instance:
+    hostname: stream-consumer-9194
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 2
+    lease-expiration-duration-in-seconds: 5

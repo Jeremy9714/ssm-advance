@@ -1,0 +1,40 @@
+server:
+  port: 10001
+
+spring:
+  application:
+    name: cloud-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true # 开启从注册中心动态创建路由的功能
+      routes: 
+        - id: payment8001_get
+#          uri: http://localhost:8001
+          uri: lb://cloud-payment-service # 基于服务注册的负载均衡
+          predicates:
+            - Path=/payment/getPaymentById/{id}
+          filters:
+            - AddRequestHeader=id,{id} # 添加请求头
+        - id: payment8001_lb
+#          uri: http://localhost:8001
+          uri: lb://cloud-payment-service
+          predicates:
+            - Path=/payment/lb/**
+#            - Cookie=token,123 
+#            - Query=kw,\d+ # 属性名，属性值
+#            - Header=X-Request-Id,\d+
+#            - Between=2025-04-18T08:00:00.000+08:00[Asia/Shanghai],2025-04-18T10:00:00.000+08:00[Asia/Shanghai]
+            - Method=GET
+          filters:
+            - AddRequestParameter=kw,123
+
+eureka:
+  instance:
+    hostname: cloud-gateway-service
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url: 
+      defaultZone: http://eureka7003:7003/eureka

@@ -1,0 +1,29 @@
+server:
+  port: 3344
+spring:
+  application:
+    name: cloud-config-service
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/Jeremy9714/spring-cloud-config-202504.git
+          search-paths: # 目录
+            - spring-cloud-config-202504
+      label: main # 分支
+    bus:
+      refresh:
+        enabled: true
+  kafka:
+    bootstrap-servers: k8s-master:9092
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7003:7003/eureka
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'bus-refresh' # bus-refresh

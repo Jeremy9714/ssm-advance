@@ -20,6 +20,18 @@
         <module>01-cloud-provider-payment-8002</module>
         <module>01-cloud-provider-payment-8004</module>
         <module>02-cloud-consumer-order-9004</module>
+        <module>02-cloud-consumer-order-feign-9001</module>
+        <module>01-cloud-provider-hystrix-payment-8001</module>
+        <module>05-cloud-eureka-server-7003</module>
+        <module>02-cloud-consumer-order-feign-hystrix-9001</module>
+        <module>02-cloud-consumer-order-hystrix-dashboard-9001</module>
+        <module>00-cloud-gateway-10001</module>
+        <module>cloud-config-server-3344</module>
+        <module>cloud-config-client-3355</module>
+        <module>cloud-config-client-3366</module>
+        <module>cloud-stream-kafka-producer-9192</module>
+        <module>cloud-stream-kafka-consumer-9193</module>
+        <module>cloud-stream-kafka-consumer-9194</module>
     </modules>
 
     <properties>

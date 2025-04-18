@@ -53,4 +53,14 @@ public class PayController {
     public Integer getLB(){
         return serverProperties.getPort();
     }
+
+    @GetMapping("/timeout")
+    public Integer timeout(){
+        try{
+            Thread.sleep(3000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return serverProperties.getPort();
+    }
 }

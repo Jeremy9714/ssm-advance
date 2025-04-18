@@ -1,0 +1,26 @@
+server:
+  port: 9192
+
+spring:
+  application:
+    name: cloud-stream-producer
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: k8s-master:9092 # broker地址
+          auto-create-topics: true # 自动创建主题
+      bindings:
+        output: # output通道生产消息
+          destination: stream-kafka # topic
+          content-type: application/json # 消息类型
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7003:7003/eureka
+  instance:
+    hostname: stream-provider-9192
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 2 # 心跳间隔
+    lease-expiration-duration-in-seconds: 5 # 超时时间

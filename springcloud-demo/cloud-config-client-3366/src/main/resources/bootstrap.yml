@@ -1,0 +1,25 @@
+server:
+  port: 3366
+
+spring:
+  application:
+    name: cloud-config-client
+  cloud:
+    config:
+      label: main
+      name: config
+      profile: dev
+      uri: http://config3344:3344
+  kafka:
+    bootstrap-servers: k8s-master:9092
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7003:7003/eureka
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

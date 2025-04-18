@@ -72,6 +72,7 @@ public class OrderController {
         if (instances == null || instances.size() <= 0) {
             return null;
         }
+        // 自定义负载均衡策略 获取服务实例
         ServiceInstance instance = loadBalancer.getInstance(instances);
         URI uri = instance.getUri();
 
