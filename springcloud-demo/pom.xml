@@ -32,6 +32,15 @@
         <module>cloud-stream-kafka-producer-9192</module>
         <module>cloud-stream-kafka-consumer-9193</module>
         <module>cloud-stream-kafka-consumer-9194</module>
+        <module>cloud-alibaba-provider-payment-9101</module>
+        <module>cloud-alibaba-provider-payment-9102</module>
+        <module>cloud-alibaba-consumer-order-9001</module>
+        <module>cloud-alibaba-config-nacos-client-3377</module>
+        <module>cloud-sentinel-service-8401</module>
+        <module>cloud-alibaba-provider-payment-9103</module>
+        <module>cloud-alibaba-provider-payment-9104</module>
+        <module>cloud-alibaba-consumer-order-9002</module>
+        <module>seata-order-service-2001</module>
     </modules>
 
     <properties>

@@ -1,0 +1,28 @@
+server:
+  port: 8401
+
+spring:
+  application:
+    name: cloud-sentinel-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    sentinel:
+      transport:
+        dashboard: localhost:8080 # sentinel dashboard地址
+        port: 8719 # 后台接口，被占用则自动从8719递增，直至找到未被占用的端口
+      datasource: # sentinel规则持久化
+        ds1:
+          nacos:
+            server-addr: localhost:8848 # nacos地址
+            dataId: ${spring.application.name} 
+            groupId: DEFAULT_GROUP
+            data-type: json # 配置文件格式类型
+            rule-type: flow # 规则 (rule:流控)
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
