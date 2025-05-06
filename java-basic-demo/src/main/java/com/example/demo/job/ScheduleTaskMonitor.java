@@ -6,14 +6,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.SchedulingConfigurer;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
-import org.springframework.stereotype.Component;
 
 /**
- * @Description:
+ * @Description: 配置定时任务的线程池
  * @Author: Chenyang on 2025/05/06 14:56
  * @Version: 1.0
  */
-@Component
+//@Component
 @Configuration
 public class ScheduleTaskMonitor implements SchedulingConfigurer {
 
@@ -34,6 +33,7 @@ public class ScheduleTaskMonitor implements SchedulingConfigurer {
     @Override
     public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
         ThreadPoolTaskScheduler threadPoolTaskScheduler = threadPoolTaskScheduler();
+        // 设置线程池
         taskRegistrar.setTaskScheduler(threadPoolTaskScheduler);
     }
 
