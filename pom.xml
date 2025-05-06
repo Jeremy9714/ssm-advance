@@ -19,6 +19,8 @@
         <module>mybatis-demo</module>
         <module>springboot-demo</module>
         <module>springcloud-demo</module>
+        <module>design-pattern-demo</module>
+        <module>java-basic-demo</module>
     </modules>
 
     <properties>
